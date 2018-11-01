@@ -1,6 +1,6 @@
 <template>
-  <div class="PublicIndex">
-    hello world
+  <div class="Index">
+    <div class="header">车险管家</div>
   </div>
 </template>
 
@@ -22,7 +22,14 @@
 </script>
 
 <style lang="scss">
-  .PublicIndex{
-
+  .Index{
+    .header{
+      height: 29px;
+      line-height: 28px;
+      margin: 9px 0;
+      font-size: 20px;/*px*/
+      text-align: center;
+      color: #FC6C0B;
+    }
   }
 </style>
