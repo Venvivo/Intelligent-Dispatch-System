@@ -25,7 +25,7 @@ exports.cssLoaders = function (options) {
     options: {
       remUnit:75
     }
-  }
+  };
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
