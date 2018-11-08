@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="icon clearfix">
-      <div class="icon_item">
+      <div class="icon_item" @click="toPath('/TaskManager')">
         <div class="icon_1"></div>
         <p>任务管理</p>
       </div>
@@ -42,28 +42,32 @@
         <p>服务单</p>
       </div>
     </div>
-    <div class="message">
+    <div class="message" :style="{ height: wrapperHeight + 'px' }">
       <div class="message_item">
         <div class="message_item_top">
-          <i></i><!----><span>系统消息</span>
+          <i class="system_icon"></i><!----><span>系统派单</span><b>3分钟前</b>
           <div class="extra">查看</div>
         </div>
-        <div class="message_item_bottom">20分钟前  系统有新的派单</div>
+        <div class="message_item_center">您有新的派单啦</div>
+        <div class="message_item_bottom">瑶海万达广场附近  距离<span>500米</span></div>
       </div>
       <div class="message_item">
         <div class="message_item_top">
-          <i></i><!----><span>系统消息</span>
+          <i  class="note_icon"></i><!----><span>营销日志提醒</span><b>20分钟前</b>
           <div class="extra">查看</div>
         </div>
-        <div class="message_item_bottom">25分钟前  系统有新的派单</div>
+        <div class="message_item_center">任务单（张三）</div>
+        <div class="message_item_bottom">连续3天未提交日志信息</div>
       </div>
       <div class="message_item">
         <div class="message_item_top">
-          <i></i><!----><span>系统消息</span>
+          <i class="note_icon"></i><!----><span>系统派单</span><b>3分钟前</b>
           <div class="extra">查看</div>
         </div>
-        <div class="message_item_bottom">30分钟前  系统有新的派单</div>
+        <div class="message_item_center">您有新的派单啦</div>
+        <div class="message_item_bottom">瑶海万达广场附近  距离<span>500米</span></div>
       </div>
+
     </div>
     <div class="menu clearfix">
       <div class="menu_item checked">
@@ -85,11 +89,17 @@
 <script>
   export default {
     data() {
-      return {};
+      return {
+        wrapperHeight:0
+      };
     },
-    methods: {},
-    mounted: function () {
-
+    methods: {
+      toPath:function (path) {
+        this.$router.push(path)
+      }
+    },
+    mounted:function () {
+      this.wrapperHeight = document.documentElement.clientHeight - 430;
     }
   }
 
@@ -97,6 +107,7 @@
 
 <style lang="scss">
   .Index {
+    width: 375px;
     min-height: 100vh;
     background: #fff;
     overflow: hidden;
@@ -287,43 +298,72 @@
       z-index: 1;
     }
     .message {
-      margin-top: 16px;
+      overflow-y: scroll;
       .message_item {
-        height: 60px;
         position: relative;
-        margin-left: 19px;
         .message_item_top {
           z-index: 2;
           position: relative;
           font-size: 14px; /*no*/
+          height: 20px;
+          line-height: 20px;
+          margin-top: 18px;
           i {
             width: 20px;
             height: 20px;
             display: inline-block;
             vertical-align: middle;
-            background: url(../assets/images/system_message.png) no-repeat center / 100% 100%;
-            margin: 10px 10px 0 0;
+            margin: 0 10px 0 19px;
+          }
+          .system_icon{
+            background: url(../assets/images/system_message_1.png) no-repeat center / 100% 100%;
+          }
+          .note_icon{
+            background: url(../assets/images/note_icon.png) no-repeat center / 100% 100%;
           }
           span {
-            margin-top: 10px;
             display: inline-block;
             vertical-align: middle;
+            color: #333333;
+            font-weight: 600;
+          }
+          b{
+            font-weight: 400;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 13px;/*no*/
+            color: #666666;
+            margin-left: 5px;
           }
           .extra {
             float: right;
             color: #F8741B;
             margin-right: 22px;
-            padding: 0 1px 2px;
+            padding: 0 3px 1px;
             border-bottom: 2px solid #F8741B; /*no*/
             font-size: 12px; /*no*/
             position: relative;
-            bottom: -10px;
           }
         }
+        .message_item_center{
+          font-size: 14px;/*no*/
+          margin:12px 0 4px 49px;
+          font-weight: 600;
+          height: 20px;
+          line-height: 20px;
+        }
         .message_item_bottom {
-          font-size: 12px; /*no*/
-          margin: 5px 0 0 30px;
-          color: #666F77;
+          font-size: 13px; /*no*/
+          margin: 4px 0 0 49px;
+          color: #666666;
+          height: 18px;
+          line-height: 18px;
+          padding-bottom: 17px;
+          span{
+            color: #F8741B;
+            display: inline-block;
+            margin-left: 3px;
+          }
         }
       }
       .message_item:before {
